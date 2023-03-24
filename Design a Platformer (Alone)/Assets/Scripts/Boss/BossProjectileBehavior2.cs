@@ -27,11 +27,12 @@ public class BossProjectileBehavior2 : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.AddForce(shotDirection * speed, ForceMode2D.Impulse);
+        //rb.AddForce(shotDirection * speed, ForceMode2D.Impulse);
+        transform.position += -transform.right * Time.deltaTime * speed;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag != "Boss")
+        if (collision.gameObject.tag != "Boss")
         {
             Destroy(gameObject);
         }

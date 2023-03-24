@@ -20,7 +20,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            //playerManager.TakeDamage();
+            playerManager.TakeDamage();
         }
     }
 }

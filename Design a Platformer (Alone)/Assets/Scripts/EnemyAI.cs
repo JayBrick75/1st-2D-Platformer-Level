@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
             MoveToNextPoint();
         }
 
-        // CheckForPlayer();
+        CheckForPlayer();
 
         if(playerSeen == true)
         {
@@ -71,7 +71,7 @@ public class EnemyAI : MonoBehaviour
     }
     void CheckForPlayer()
     {
-        if (Vector2.Distance(transform.position, player.position) < 5f)
+        if (Vector2.Distance(transform.position, player.position) < 4f)
         {
             playerSeen = true;
             enemyPatrol = false;

@@ -59,4 +59,8 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Player got caught");
         }
     }
+    public void TakeDamage()
+    {
+        playerHealth -= 1;
+    }
 }

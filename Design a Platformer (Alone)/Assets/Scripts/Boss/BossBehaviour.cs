@@ -33,7 +33,7 @@ public class BossBehaviour : MonoBehaviour
         {
             phase2 = true;
             attackRange = 6;
-            speed = 3;
+            speed = 3.5f;
             Debug.Log("Phase2");
         }
         else if(bossHealth < 4 && bossHealth >= 1)
@@ -41,14 +41,23 @@ public class BossBehaviour : MonoBehaviour
             phase2 = false;
             phase3 = true;
             attackRange = 8;
-            speed = 1;
+            speed = 1.5f;
             Debug.Log("Phase3");
         }
         else if(bossHealth <= 0)
         {
             phase3 = false;
             isDead = true;
+            Destroy(gameObject);
             Debug.Log("Boss has sadly passed away");
+        }
+        if (phase3)
+        {
+            if (timer > cooldown)
+            {
+                GameObject clone = Instantiate(projectile2, shotLocation.position, transform.rotation);
+                timer = 0;
+            }
         }
 
         timer += Time.deltaTime;
@@ -60,14 +69,9 @@ public class BossBehaviour : MonoBehaviour
         {
             if (phase2)
             {
-                GameObject clone = Instantiate(projectile, shotLocation.position, Quaternion.identity);
+                GameObject clone = Instantiate(projectile, shotLocation.position, transform.rotation);
                 timer = 0;
-            }
-            else if (phase3)
-            {                                 //change object to a different one
-                GameObject clone = Instantiate(projectile2, shotLocation.position, Quaternion.identity);
-                timer = 0;
-            }
+            } 
         }
     }
 
@@ -93,7 +97,7 @@ public class BossBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == ("Projectile"))
         {
-            bossHealth -= 0.2f;
+            bossHealth -= 0.3f;
         }
     }
 }
